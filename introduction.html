@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction - Chronicles of Exoplanet Exploration</title>
+    <link rel="icon" href="images/Logo.ico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .content {
+            margin: 20px 0;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 15px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .current-time {
+            font-size: 1.2rem;
+            color: white;
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">Exoplanet Explorer</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="planet-exploring.html">Planet Exploring</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="introduction.html">Introduction</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="aichat.html">AI Chat</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+            </ul>
+            <div id="currentDateTime" class="current-time"></div>
+        </div>
+    </nav>
+
+    <!-- Introduction Section -->
+    <div class="container my-5">
+        <h1 class="text-center">Chronicles of Exoplanet Exploration</h1>
+        <p class="lead text-center">
+            Discover the fascinating world of exoplanets and the ongoing exploration efforts to uncover their mysteries.
+        </p>
+        
+            <a class="carousel-control-prev" href="#exoplanetCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#exoplanetCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+        <div class="content">
+            <h2>What Are Exoplanets?</h2>
+            <p>
+                Exoplanets, or extrasolar planets, are planets that exist outside our solar system. They orbit stars other than the Sun and can vary widely in size, composition, and distance from their host stars. The study of exoplanets has surged since the first confirmed discovery in the 1990s, with thousands now cataloged.
+            </p>
+
+            <h2>The Importance of Exploring Exoplanets</h2>
+            <p>
+                Understanding exoplanets helps us answer fundamental questions about the universe, including the potential for life beyond Earth. Researchers analyze exoplanets to gather insights into their atmospheres, climates, and the possibility of habitable conditions.
+            </p>
+
+            <h2>Current Exploration Methods</h2>
+            <p>
+                Scientists employ various methods to discover and study exoplanets, including the transit method, radial velocity method, and direct imaging. These techniques allow researchers to detect exoplanets, measure their sizes, and analyze their atmospheric compositions.
+            </p>
+
+            <h2>Notable Discoveries</h2>
+            <p>
+                Over the years, many exoplanets have captured the attention of the scientific community. For instance, the discovery of TRAPPIST-1 in 2017 revealed seven Earth-sized planets orbiting a single star, some of which are located in the habitable zone. Another significant find is Proxima Centauri b, which orbits the closest star to our solar system.
+            </p>
+
+            <h2>The Future of Exoplanet Exploration</h2>
+            <p>
+                As technology advances, the future of exoplanet exploration looks promising. Upcoming missions and telescopes aim to provide deeper insights into distant worlds, potentially revealing planets that could support life.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p class="text-center">Built by Monofeya Heroes © 2024</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script>
+        // Update current date and time
+        function updateDateTime() {
+            const now = new Date();
+            document.getElementById('currentDateTime').textContent = now.toLocaleString();
+        }
+        setInterval(updateDateTime, 1000);
+    </script>
+</body>
+</html>
