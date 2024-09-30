@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Quiz Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #fff;
+            background: radial-gradient(circle, rgba(20,20,30,1) 0%, rgba(0,0,0,1) 100%);
+            overflow-y: auto;
+            margin: 0; /* Remove default body margin */
+        }
+
+        nav {
+            position: fixed; /* Fixed position for the navbar */
+            width: 100%; /* Full width */
+            z-index: 1000; /* Ensure it stays above other content */
+        }
+
+        #quizContainer {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(50, 50, 70, 0.8);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin-top: 80px; /* Space for fixed navbar */
+        }
+
+        #answers {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        #answers button {
+            margin: 5px;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.2s;
+            width: 200px;
+        }
+
+        #answers button:hover {
+            transform: scale(1.05);
+        }
+
+        #nasaMusic {
+            display: none; /* Hides the audio element */
+        }
+
+        #canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1; /* Behind other content */
+        }
+
+        #levelSelection {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">Exoplanet Explorer</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="planet-exploring.html">Planet Exploring</a></li>
+                <li class="nav-item"><a class="nav-link" href="aichat.html">AI Chat</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            </ul>
+            <div id="currentDateTime" class="current-time"></div>
+        </div>
+    </nav>
+
+    <!-- Audio for NASA Music -->
+    <audio id="nasaMusic" loop autoplay>
+        <source src="path/to/your/nasa-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <canvas id="canvas"></canvas>
+
+    <div id="quizContainer" style="display:none;">
+        <h2 id="quizQuestion"></h2>
+        <div id="answers"></div>
+        <button id="nextQuestion" style="display:none;" class="btn btn-secondary">Next Question</button>
+    </div>
+
+    <div id="levelSelection">
+        <h2>Select Difficulty Level</h2>
+        <button class="btn btn-primary" onclick="startQuiz('easy')">Easy</button>
+        <button class="btn btn-warning" onclick="startQuiz('medium')">Medium</button>
+        <button class="btn btn-danger" onclick="startQuiz('hard')">Hard</button>
+    </div>
+
+    <script>
+        // Sample questions
+        const questions = {
+            easy: [
+                { question: "What is the closest planet to the Sun?", answers: ["Mercury", "Venus", "Earth", "Mars"], correct: 0 },
+                { question: "What is the largest planet in our Solar System?", answers: ["Earth", "Jupiter", "Saturn", "Neptune"], correct: 1 },
+                { question: "Which planet is known as the Red Planet?", answers: ["Earth", "Mars", "Jupiter", "Saturn"], correct: 1 },
+                { question: "What celestial body do we orbit?", answers: ["The Moon", "Mars", "The Sun", "Venus"], correct: 2 },
+                { question: "Which planet has rings?", answers: ["Earth", "Mars", "Jupiter", "Saturn"], correct: 3 },
+                { question: "Which is the hottest planet?", answers: ["Mercury", "Venus", "Mars", "Jupiter"], correct: 1 },
+                { question: "What is the main gas in the Sun?", answers: ["Oxygen", "Carbon Dioxide", "Hydrogen", "Nitrogen"], correct: 2 },
+                { question: "Which planet is famous for its Great Red Spot?", answers: ["Mars", "Saturn", "Jupiter", "Uranus"], correct: 2 },
+                { question: "How many planets are in the Solar System?", answers: ["7", "8", "9", "10"], correct: 1 },
+                { question: "What is the name of our galaxy?", answers: ["Andromeda", "Milky Way", "Whirlpool", "Sombrero"], correct: 1 },
+                { question: "Which planet is known as Earth's twin?", answers: ["Mars", "Venus", "Mercury", "Jupiter"], correct: 1 },
+                { question: "What is the name of the fifth planet from the Sun?", answers: ["Jupiter", "Saturn", "Earth", "Mars"], correct: 0 },
+                { question: "What is the coldest planet in our Solar System?", answers: ["Pluto", "Neptune", "Uranus", "Mars"], correct: 1 },
+                { question: "Which planet has the shortest day?", answers: ["Jupiter", "Earth", "Mars", "Saturn"], correct: 0 },
+                { question: "What do you call a space rock that enters Earth's atmosphere?", answers: ["Asteroid", "Meteor", "Comet", "Satellite"], correct: 1 },
+                { question: "Which planet is known for its extensive ring system?", answers: ["Jupiter", "Saturn", "Uranus", "Neptune"], correct: 1 },
+                { question: "What is the name of the first man-made satellite?", answers: ["Apollo", "Hubble", "Sputnik", "Voyager"], correct: 2 },
+                { question: "Which planet is known for having a giant storm?", answers: ["Jupiter", "Venus", "Earth", "Mars"], correct: 0 },
+                { question: "What is the name of the largest moon of Saturn?", answers: ["Titan", "Europa", "Ganymede", "Callisto"], correct: 0 },
+                { question: "Which planet rotates on its side?", answers: ["Uranus", "Neptune", "Saturn", "Mars"], correct: 0 },
+                { question: "What is the main component of Mars' atmosphere?", answers: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"], correct: 2 },
+            ],
+            medium: [
+                { question: "What is the hottest planet in our Solar System?", answers: ["Venus", "Mercury", "Mars", "Jupiter"], correct: 0 },
+                { question: "Which planet is known for its Great Red Spot?", answers: ["Mars", "Earth", "Jupiter", "Saturn"], correct: 2 },
+                { question: "Which planet has the most moons?", answers: ["Mars", "Jupiter", "Earth", "Saturn"], correct: 1 },
+                { question: "What is the name of the first human in space?", answers: ["Buzz Aldrin", "Neil Armstrong", "Yuri Gagarin", "John Glenn"], correct: 2 },
+                { question: "What is the furthest planet from the Sun?", answers: ["Neptune", "Pluto", "Uranus", "Saturn"], correct: 0 },
+                { question: "Which planet spins the fastest?", answers: ["Jupiter", "Saturn", "Neptune", "Earth"], correct: 0 },
+                { question: "What celestial object is at the center of our Solar System?", answers: ["Earth", "Black Hole", "The Sun", "Moon"], correct: 2 },
+                { question: "How many moons does Earth have?", answers: ["1", "2", "3", "0"], correct: 0 },
+                { question: "Which planet is known as the Morning Star?", answers: ["Venus", "Mars", "Mercury", "Saturn"], correct: 0 },
+                { question: "What force keeps planets in orbit around the Sun?", answers: ["Magnetism", "Gravity", "Friction", "Inertia"], correct: 1 },
+            ],
+            hard: [
+                { question: "Which planet has the longest day?", answers: ["Venus", "Jupiter", "Earth", "Mars"], correct: 0 },
+                { question: "What is the largest moon of Jupiter?", answers: ["Titan", "Io", "Ganymede", "Europa"], correct: 2 },
+                { question: "Which planet has a hexagonal storm at its north pole?", answers: ["Jupiter", "Saturn", "Uranus", "Neptune"], correct: 1 },
+                { question: "What is the most abundant gas in the universe?", answers: ["Oxygen", "Hydrogen", "Nitrogen", "Carbon Dioxide"], correct: 1 },
+                { question: "What is the name of the largest volcano in the Solar System?", answers: ["Olympus Mons", "Mauna Kea", "Mount Everest", "Kilimanjaro"], correct: 0 },
+                { question: "What was the first spacecraft to reach the Moon?", answers: ["Apollo 11", "Voyager 1", "Luna 2", "Gemini 4"], correct: 2 },
+                { question: "Which planet is tilted on its axis by 98 degrees?", answers: ["Uranus", "Neptune", "Saturn", "Jupiter"], correct: 0 },
+                { question: "What is the coldest temperature ever recorded in the universe?", answers: ["-273°C", "-100°C", "-196°C", "0°C"], correct: 0 },
+                { question: "What is the Kuiper Belt?", answers: ["A region of icy bodies", "A type of galaxy", "A black hole", "A comet"], correct: 0 },
+                { question: "Which planet is named after the Roman god of war?", answers: ["Mars", "Jupiter", "Saturn", "Neptune"], correct: 0 },
+            ],
+        };
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let currentLevelQuestions = [];
+
+        function startQuiz(level) {
+            currentQuestionIndex = 0;
+            score = 0;
+            currentLevelQuestions = questions[level];
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('levelSelection').style.display = 'none';
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const question = currentLevelQuestions[currentQuestionIndex];
+            document.getElementById('quizQuestion').innerText = question.question;
+            const answersDiv = document.getElementById('answers');
+            answersDiv.innerHTML = '';
+
+            question.answers.forEach((answer, index) => {
+                const button = document.createElement('button');
+                button.innerText = answer;
+                button.className = 'btn btn-primary';
+                button.onclick = () => checkAnswer(index, button);
+                answersDiv.appendChild(button);
+            });
+
+            document.getElementById('nextQuestion').style.display = 'none';
+        }
+
+        function checkAnswer(selected, button) {
+            const correctIndex = currentLevelQuestions[currentQuestionIndex].correct;
+
+            // Disable all buttons
+            const buttons = document.querySelectorAll('#answers button');
+            buttons.forEach(btn => btn.disabled = true);
+
+            if (selected === correctIndex) {
+                score++;
+                button.style.backgroundColor = 'green'; // Highlight correct answer
+            } else {
+                button.style.backgroundColor = 'red'; // Highlight wrong answer
+            }
+
+            document.getElementById('nextQuestion').style.display = 'block';
+        }
+
+        document.getElementById('nextQuestion').onclick = function() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < currentLevelQuestions.length) {
+                loadQuestion();
+            } else {
+                endQuiz();
+            }
+        };
+
+        function endQuiz() {
+            alert('Quiz finished! Your score: ' + score);
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('levelSelection').style.display = 'block';
+        }
+
+        // Star animation
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const stars = [];
+        const numStars = 100;
+        for (let i = 0; i < numStars; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2 + 1,
+                speed: Math.random() * 0.5 + 0.1
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                star.y += star.speed;
+                if (star.y > canvas.height) {
+                    star.y = 0;
+                    star.x = Math.random() * canvas.width;
+                }
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'white'; // Star color
+                ctx.fill();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
