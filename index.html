@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exoplanet Explorer</title>
+    <link rel="icon" href="/images/Logo.ico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            background: radial-gradient(circle, rgba(20,20,30,1) 0%, rgba(0,0,0,1) 100%);
+            overflow-y: auto; /* Make the page scrollable */
+            height: 100vh; /* Ensure body height is 100% of viewport height */
+        }
+
+        a {
+            color: #00ccff; /* Space-themed link color */
+        }
+
+        .navbar-nav .nav-link {
+            color: white; /* Navbar link color */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #00ccff; /* Navbar link hover color */
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 50px 20px;
+            position: relative;
+            z-index: 1; /* Bring hero section above the background */
+        }
+
+        .content-section {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #1a1a4b;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            margin-top: 20px; /* Space above footer */
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: twinkle 1.5s infinite alternate;
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.9;
+            transition: transform 0.1s ease; /* Smooth movement */
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+        
+        /* Custom cursor */
+        .cursor {
+            position: fixed;
+            width: 30px;  /* Adjusted size for visibility */
+            height: 30px; /* Adjusted size for visibility */
+            border-radius: 50%; /* Circular shape */
+            pointer-events: none;
+            z-index: 1000; /* On top of everything */
+            border: 2px solid white; /* Optional border */
+            transform: translate(-50%, -50%); /* Center cursor on mouse */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">Exoplanet Explorer</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="planet-exploring.html">Planet Exploring</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="aichat.html">AI Chat</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="gaming.html">Game</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="heroSection">
+        <h1>Welcome to Exoplanet Explorer</h1>
+        <p>Your gateway to exploring exoplanets and their discovery records based on NASA resources.</p>
+        <div class="date-time" id="dateTime"></div>
+        <a href="planet-exploring.html" class="btn btn-primary">Learn More!</a>
+        <a href="gaming.html" class="btn btn-primary">Play a Game!</a>
+    </section>
+
+    <!-- About Section -->
+    <section class="content-section">
+        <h2>About Exoplanet Explorer</h2>
+        <p>Exoplanet Explorer is dedicated to providing users with a comprehensive platform for exploring exoplanets using cutting-edge technology derived from NASA’s extensive research and data resources. Our website serves as a central hub for astronomy enthusiasts, students, and educators interested in the latest discoveries in the realm of exoplanets.</p>
+        <p>Utilizing data from NASA's Exoplanet Archive and Eyes on Exoplanets, we aim to make this information accessible and engaging. Our interactive features allow users to dive deep into the characteristics of exoplanets, understand their potential habitability, and learn about the scientific missions dedicated to discovering new worlds beyond our solar system.</p>
+        <p>Whether you’re a beginner looking to learn about the cosmos or a seasoned researcher seeking detailed data, Exoplanet Explorer has something for everyone. Join us in our mission to connect people with the wonders of the universe!</p>
+    </section>
+
+    <!-- NASA Resources Section -->
+    <section class="content-section">
+        <h2>NASA Resources</h2>
+        <p>This website leverages various NASA resources to provide you with in-depth information about exoplanets and their exploration. Our mission is to connect you with tools and data from NASA’s Exoplanet Archive, Eyes on Exoplanets, and educational materials from the Jet Propulsion Laboratory (JPL).</p>
+        <p>With interactive features and comprehensive datasets, users can explore the characteristics of exoplanets, their potential habitability, and the scientific missions dedicated to discovering new worlds beyond our solar system.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Built By Monofeya Heroes</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Date and Time Functionality
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', 
+                hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true 
+            };
+            document.getElementById('dateTime').textContent = now.toLocaleString('en-US', options);
+        }
+        setInterval(updateDateTime, 1000);
+        updateDateTime(); // Initial call
+
+        // Generate Stars
+        function createStars(numStars) {
+            const body = document.body;
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 3 + 1; // Random size between 1 and 4
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.top = `${Math.random() * 100}vh`;
+                star.style.left = `${Math.random() * 100}vw`;
+                body.appendChild(star);
+            }
+        }
+
+        // Generate Planets
+        function createPlanets(numPlanets) {
+            const body = document.body;
+            const planetMinSize = 10; // Minimum planet size
+            const planetMaxSize = 30; // Maximum planet size
+            const screenPadding = 100; // Padding from screen edges
+
+            for (let i = 0; i < numPlanets; i++) {
+                const planet = document.createElement('div');
+                planet.className = 'planet';
+                const size = Math.random() * (planetMaxSize - planetMinSize) + planetMinSize; // Random size
+                planet.style.width = `${size}px`;
+                planet.style.height = `${size}px`;
+                planet.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`; // Random color
+                
+                // Random position ensuring the planet is not at the edges
+                const posX = Math.random() * (window.innerWidth - size - screenPadding) + (size / 2);
+                const posY = Math.random() * (window.innerHeight - size - screenPadding) + (size / 2);
+                planet.style.left = `${posX}px`;
+                planet.style.top = `${posY}px`;
+                body.appendChild(planet);
+
+                // Function to move planets randomly
+                function movePlanet() {
+                    const randomX = (Math.random() * 2 - 1) * 5; // Random value between -5 and 5
+                    const randomY = (Math.random() * 2 - 1) * 5; // Random value between -5 and 5
+                    const currentTop = parseFloat(planet.style.top);
+                    const currentLeft = parseFloat(planet.style.left);
+                    
+                    planet.style.top = `${Math.min(Math.max(currentTop + randomY, 0), window.innerHeight)}px`; // Keep within bounds
+                    planet.style.left = `${Math.min(Math.max(currentLeft + randomX, 0), window.innerWidth)}px`; // Keep within bounds
+
+                    // Call movePlanet again after a random interval
+                    setTimeout(movePlanet, Math.random() * 2000 + 500); // Random interval between 500ms and 2500ms
+                }
+
+                // Function to "fight" back from cursor
+                function fightBackFromCursor(event) {
+                    const planetRect = planet.getBoundingClientRect();
+                    const planetCenterX = planetRect.left + planetRect.width / 2;
+                    const planetCenterY = planetRect.top + planetRect.height / 2;
+
+                    const distanceX = event.clientX - planetCenterX;
+                    const distanceY = event.clientY - planetCenterY;
+                    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+                    // If the cursor is close, move the planet away
+                    if (distance < 100) {
+                        const angle = Math.atan2(distanceY, distanceX);
+                        const escapeDistance = 30; // Distance to move away
+
+                        const moveX = Math.cos(angle) * escapeDistance;
+                        const moveY = Math.sin(angle) * escapeDistance;
+
+                        planet.style.top = `${Math.min(Math.max(planetCenterY + moveY, 0), window.innerHeight)}px`;
+                        planet.style.left = `${Math.min(Math.max(planetCenterX + moveX, 0), window.innerWidth)}px`;
+                    }
+                }
+
+                // Attach mouse move event listener
+                document.addEventListener('mousemove', fightBackFromCursor);
+                movePlanet(); // Start moving the planet
+            }
+        }
+        createStars(100); // Generate 100 stars
+        createPlanets(5); // Generate 5 planets
+
+        // Change cursor color based on mouse position without following
+        const cursor = document.createElement('div');
+        cursor.className = 'cursor';
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (event) => {
+            const { clientX, clientY } = event;
+            const red = Math.round((clientX / window.innerWidth) * 255);
+            const green = Math.round((clientY / window.innerHeight) * 255);
+            const blue = 100; // Fixed blue value
+
+            const cursorColor = `rgb(${red}, ${green}, ${blue})`;
+            cursor.style.backgroundColor = cursorColor;
+            cursor.style.transform = `translate(${clientX}px, ${clientY}px)`; // Centered on mouse
+        });
+    </script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
