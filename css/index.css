@@ -9,7 +9,9 @@ body {
     overflow-y: auto; /* Make the page scrollable */
     height: 100vh; /* Ensure body height is 100% of viewport height */
 }
-
+#wellcome{
+    background: white;
+    color: black;
 a {
     color: #00ccff; /* Space-themed link color */
 }
