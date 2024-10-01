@@ -12,7 +12,7 @@ body {
 #wellcome {
     background-color: rgb(255, 255, 255); /* Highlight color for the text */
     color: black; /* Text color */
-    width: auto; /* Width adjusts based on content */
+    width: 50%; /* Width adjusts based on content */
     text-align: center; /* Center the text */
     display: inline-block; /* Make the element shrink to fit the content */
     padding: 10px; /* Optional: add some padding for better appearance */
