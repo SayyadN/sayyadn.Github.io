@@ -1,0 +1,75 @@
+<!DOCTYPE html> <!-- Declares the document type and version of HTML -->
+<html lang="en"> <!-- Starts the HTML document and sets the language to English -->
+<head>
+    <meta charset="UTF-8"> <!-- Sets the character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design on mobile devices -->
+    <title>Space Quiz Game</title> <!-- Sets the title of the webpage displayed in the browser tab -->
+    
+    <!-- Links to Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="icon" href="images/Logo.ico"> <!-- Links to the favicon displayed in the browser tab -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400&display=swap" rel="stylesheet"> <!-- Links to the Space Mono font from Google Fonts -->
+    <link rel="stylesheet" href="css/gaming.css"> <!-- Links to the custom CSS file for the game page -->
+</head>
+<body>
+
+    <!-- Navbar for navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">Exoplanet Explorer</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="planet-exploring.html">Planet Exploring</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="aichat.html">AI Chat</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop autoplay> <!-- Audio element for background music -->
+        <source src="music/The Sound of Space_ Cosmic Symphony 🌌🎶 #shorts #galaxy #education #universe.mp3" type="audio/mpeg" loop> <!-- Source of the audio file -->
+        Your browser does not support the audio tag. <!-- Fallback message for unsupported browsers -->
+    </audio>
+
+    <!-- Quiz Container -->
+    <div id="quizContainer" style="display:none;"> <!-- Container for quiz questions, hidden by default -->
+        <h2 id="quizQuestion"></h2> <!-- Placeholder for displaying the quiz question -->
+        <div id="answers"></div> <!-- Placeholder for displaying answer options -->
+        <div id="correctAnswer" style="display:none; margin: 20px 0;"></div> <!-- Placeholder for displaying the correct answer, hidden by default -->
+        <button id="nextQuestion" style="display:none;" class="btn btn-secondary">Next Question</button> <!-- Button to go to the next question, hidden by default -->
+        <button id="showScore" class="btn btn-info">Show Score</button> <!-- Button to show the user's score -->
+        <button id="exitGame" class="btn btn-danger"><a href="index.html">Exit Game</a></button> <!-- Button to exit the game -->
+    </div>
+
+    <!-- Question Limit and Difficulty Selection -->
+    <div id="questionLimit" style="display: block; text-align: center;"> <!-- Container for selecting number of questions and difficulty -->
+        <h2>Select Number of Questions (1-20)</h2> <!-- Heading for question selection -->
+        <input type="number" id="questionCount" min="1" max="20" value="10" style="width: 100px;"> <!-- Input for the number of questions -->
+        <h2>Select Difficulty Level</h2> <!-- Heading for difficulty selection -->
+        <button class="btn btn-primary" onclick="startQuiz('easy')">Easy</button> <!-- Button to start quiz with easy difficulty -->
+        <button class="btn btn-warning" onclick="startQuiz('medium')">Medium</button> <!-- Button to start quiz with medium difficulty -->
+        <button class="btn btn-danger" onclick="startQuiz('hard')">Hard</button> <!-- Button to start quiz with hard difficulty -->
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/gaming.js"></script> <!-- Links to custom JavaScript file for the game -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.slim.min.js" integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj+KsslFkCOt3TvJrX2AV/Gc3wOqA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <!-- Links to jQuery library for handling events -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <!-- Links to Popper.js for tooltip and popover positioning -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <!-- Links to Bootstrap bundle which includes Popper.js for interactive components -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <!-- Links to Bootstrap JS for additional interactivity -->
+</body>
+</html>
