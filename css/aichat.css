@@ -1,0 +1,121 @@
+
+/* General Styles */
+body {
+    background: radial-gradient(circle, rgba(20,20,30,1) 0%, rgba(0,0,0,1) 100%); /* Background gradient */
+    color: #f8f9fa; /* Text color */
+    overflow-y: auto; /* Allow vertical scrolling */
+    position: relative; /* Enables absolute positioning for child elements */
+}
+
+a {
+    color: #1e90ff; /* Link color */
+}
+
+a:hover {
+    color: lightblue; /* Change link color on hover */
+}
+
+button {
+    background-color: #1e90ff; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove default button border */
+    padding: 10px; /* Padding inside the button */
+    cursor: pointer; /* Show pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+button:hover {
+    background-color: #00bfff; /* Change background on button hover */
+}
+
+.navbar-nav .nav-link {
+    color: white; /* Navbar link color */
+}
+
+.navbar-nav .nav-link:hover {
+    color: lightblue; /* Change navbar link color on hover */
+}
+
+/* Center the navbar items */
+.navbar-nav {
+    flex-direction: row; /* Align navbar items in a row */
+    justify-content: center; /* Center items horizontally */
+    width: 100%; /* Full width of the navbar */
+}
+
+/* Chat Container */
+.chat-container {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center items horizontally */
+    margin: 20px auto; /* Margin around the container */
+    max-width: 800px; /* Maximum width of the chat container */
+    padding: 20px; /* Padding inside the container */
+    border: 2px solid #1e90ff; /* Border around the container */
+    border-radius: 10px; /* Rounded corners for the container */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); /* Subtle shadow effect */
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+}
+
+#chatbox {
+    border: 1px solid #ccc; /* Light grey border for the chatbox */
+    padding: 10px; /* Padding inside the chatbox */
+    height: 400px; /* Fixed height for the chatbox */
+    overflow-y: auto; /* Allow vertical scrolling for chat messages */
+    width: 100%; /* Full width of the chatbox */
+    margin-bottom: 10px; /* Space below the chatbox */
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background for messages */
+    text-align: left; /* Left-align messages */
+    border-radius: 5px; /* Slightly rounded corners */
+}
+
+.message {
+    margin: 5px 0; /* Vertical space between messages */
+}
+
+.user-message {
+    text-align: right; /* Right-align user messages */
+    color: blue; /* Change user message text color to blue */
+    background-color: white; /* Set user message background color to white */
+    padding: 5px; /* Add padding for better readability */
+    border-radius: 5px; /* Slightly rounded corners */
+}
+
+.ai-message {
+    text-align: left; /* Left-align AI messages */
+    color: black; /* Change AI message text color to black */
+    background-color: white; /* Set background color to white */
+    padding: 5px; /* Add padding for better readability */
+    border-radius: 5px; /* Slightly rounded corners */
+}
+
+/* Footer */
+footer {
+    background-color: #343a40; /* Dark background for footer */
+    color: white; /* White text color for footer */
+    padding: 15px 0; /* Vertical padding in the footer */
+    text-align: center; /* Center text in the footer */
+}
+
+/* Canvas */
+#canvas {
+    position: fixed; /* Fix canvas position */
+    top: 0; /* Align to top of the page */
+    left: 0; /* Align to left of the page */
+    width: 100%; /* Full width of the viewport */
+    height: 100%; /* Full height of the viewport */
+    pointer-events: none; /* Allow clicks to pass through the canvas */
+    z-index: 0; /* Place canvas behind other elements */
+}
+
+/* Custom cursor */
+.cursor {
+    position: fixed; /* Fix cursor position */
+    width: 30px; /* Width of the custom cursor */
+    height: 30px; /* Height of the custom cursor */
+    border-radius: 50%; /* Circular shape for the cursor */
+    pointer-events: none; /* Allow clicks to pass through the cursor */
+    z-index: 1000; /* Place cursor on top of other elements */
+    border: 2px solid white; /* Optional white border for the cursor */
+    transform: translate(-50%, -50%); /* Center cursor based on mouse position */
+}

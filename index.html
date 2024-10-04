@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exoplanet Explorer</title>
+    <link rel="icon" href="images/Logo.ico">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <style>
+        /* Custom styles */
+        .hero-section {
+            background: rgba(0, 0, 0, 0.5); /* Transparent black */
+            color: white; /* White text */
+            padding: 5rem 0; /* Increased padding */
+        }
+        .content-section h2 {
+            color: white; /* White text for headings */
+        }
+        .content-section p {
+            color: white; /* White text for paragraphs */
+        }
+        footer {
+            background: rgba(0, 0, 0, 0.7); /* Slightly transparent footer */
+            color: white; /* White text in footer */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">Exoplanet Explorer</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="planet-exploring.html">Planet Exploring</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="gaming.html">Game</a></li>
+                <li class="nav-item"><a class="nav-link" href="aichat.html">AI Chat</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <h1 id="wellcome"></h1>
+        <p class="lead">Your gateway to exploring exoplanets and their discovery records based on NASA resources.</p>
+        <div class="date-time" id="dateTime"></div>
+        <a href="planet-exploring.html" class="btn btn-primary btn-lg">Learn More!</a>
+        <a href="gaming.html" class="btn btn-secondary btn-lg">Play a Game!</a>
+    </section>
+
+    <div class="container mt-5">
+        <div class="row">
+            <!-- About Section -->
+            <div class="col-md-6 content-section">
+                <h2>About Exoplanet Explorer</h2>
+                <p>Exoplanet Explorer is dedicated to providing users with a comprehensive platform for exploring exoplanets using cutting-edge technology derived from NASA’s extensive research and data resources. Our website serves as a central hub for astronomy enthusiasts, students, and educators interested in the latest discoveries in the realm of exoplanets.</p>
+                <p>Utilizing data from NASA's Exoplanet Archive and Eyes on Exoplanets, we aim to make this information accessible and engaging.</p>
+                <p>Whether you’re a beginner or a seasoned researcher, Exoplanet Explorer has something for everyone!</p>
+            </div>
+
+            <!-- NASA Resources Section -->
+            <div class="col-md-6 content-section">
+                <h2>Nasa Resources</h2>
+                <p>This website leverages various NASA resources to provide you with in-depth information about exoplanets and their exploration. Our mission is to connect you with tools and data from NASA’s Exoplanet Archive, Eyes on Exoplanets, and educational materials from the Jet Propulsion Laboratory (JPL).</p>
+                <p>Explore the characteristics of exoplanets, their potential habitability, and the scientific missions dedicated to discovering new worlds beyond our solar system.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-3 mt-5">
+        <p>Built By Monofeya Heroes</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+
+</body>
+</html>
