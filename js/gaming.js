@@ -1,7 +1,7 @@
 let currentQuestionIndex = 0;
 let score = 0;
 let totalQuestions = 0;
-let currentLevel = 'easy';
+let currentLevel = 'easy';    
 
 
 const questions = {
@@ -254,25 +254,35 @@ const questions = {
     ]    
 };
 
+ 
+
+ 
+
+
 
 // Function to start the quiz with the selected difficulty
 function startQuiz(difficulty) {
     currentLevel = difficulty;
     totalQuestions = parseInt(document.getElementById('questionCount').value);
-    if (totalQuestions > 20) totalQuestions = 20;
-    if (totalQuestions < 1) totalQuestions = 1;
+    
+    // Set limits for totalQuestions
+    if (totalQuestions < 10) totalQuestions = 10;
+    if (totalQuestions > 100) totalQuestions = 100;
+
     currentQuestionIndex = 0;
     score = 0;
     document.getElementById('quizContainer').style.display = 'flex';
     document.getElementById('questionLimit').style.display = 'none';
+    
+    // Show questions based on the selected level
     showQuestion(currentLevel);
 }
 
 // Function to show the current question
 function showQuestion(difficulty) {
     const quizQuestions = questions[difficulty];
-    const randomQuestions = quizQuestions.sort(() => 0.5 - Math.random()).slice(0, totalQuestions);
-    
+    const randomQuestions = quizQuestions.sort(() => 0.5 - Math.random()).slice(0, Math.min(totalQuestions, quizQuestions.length));
+
     if (currentQuestionIndex < randomQuestions.length) {
         const question = randomQuestions[currentQuestionIndex];
         document.getElementById('quizQuestion').textContent = question.question;
@@ -298,17 +308,24 @@ function checkAnswer(selected, correct) {
     if (selected === correct) {
         score++;
         document.getElementById('currentScore').textContent = score; // Update current score
-        setTimeout(() => showQuestion(currentLevel), 1400); // Next question after 1.4 seconds
+        setTimeout(() => {
+            currentQuestionIndex++;
+            showQuestion(currentLevel);
+        }, 1400); // Next question after 1.4 seconds
     } else {
         alert(`Incorrect! Your current score is ${score}.`);
-        setTimeout(() => showQuestion(currentLevel), 1400); // Next question after 1.4 seconds
+        setTimeout(() => {
+            currentQuestionIndex++;
+            showQuestion(currentLevel);
+        }, 1400); // Next question after 1.4 seconds
     }
 }
 
 // Function to end the quiz and show score
 function endQuiz() {
     document.getElementById('quizContainer').style.display = 'none';
-    alert(`Quiz Over! Your score is ${score} out of ${totalQuestions}`);
+    document.getElementById('finalScoreDisplay').textContent = `Your score is ${score} out of ${totalQuestions}`;
+    document.getElementById('finalScoreContainer').style.display = 'block'; // Show final score
 }
 
 function exitGame() {
