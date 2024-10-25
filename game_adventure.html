@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Adventure</title>
+    <link rel="stylesheet" href="css/space_adventure.css">
+    <link rel="icon" href="/images/Web_Icons/Space_Adventure.ico">
+
+</head>
+<body>
+
+    
+    <div id="gameCanvas">
+        <div id="score">Score: 0</div>
+        <div id="health">Health: 100</div>
+        <svg id="player" viewBox="0 0 100 120">
+            <defs>
+                <linearGradient id="rocketGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#2196F3"/>
+                    <stop offset="100%" style="stop-color:#4CAF50"/>
+                </linearGradient>
+            </defs>
+            <path d="M50 0 L80 80 L50 100 L20 80 Z" fill="url(#rocketGrad)"/>
+            <circle cx="50" cy="40" r="10" fill="#fff"/>
+            <path class="rocket-flame" d="M40 100 L50 120 L60 100 Z" fill="#FF9800"/>
+        </svg>
+    </div>
+
+    <div id="startScreen">
+        <h1>Space  Adventure</h1>
+        <p>Help protect Earth from alien invasion!</p>
+        <p>Use ← → arrow keys to move<br>Space bar to shoot</p>
+        <button onclick="document.getElementById('startScreen').style.display='none'; document.getElementById('shipSelect').style.display='block'">Start Mission</button>
+    </div>
+
+    <div id="shipSelect">
+        <h2>Select Your Ship</h2>
+        <div class="ship-options">
+            <div class="ship-choice" data-ship="1">
+                <svg class="ship-preview" viewBox="0 0 100 120">
+                    <path d="M50 0 L80 80 L50 100 L20 80 Z" fill="url(#rocketGrad)"/>
+                    <circle cx="50" cy="40" r="10" fill="#fff"/>
+                </svg>
+                <p>Classic Fighter</p>
+            </div>
+            <div class="ship-choice" data-ship="2">
+                <svg class="ship-preview" viewBox="0 0 100 120">
+                    <path d="M20 80 L50 0 L80 80 L50 60 Z" fill="#4CAF50"/>
+                    <circle cx="50" cy="40" r="8" fill="#fff"/>
+                </svg>
+                <p>Speed Striker</p>
+            </div>
+            <div class="ship-choice" data-ship="3">
+                <svg class="ship-preview" viewBox="0 0 100 120">
+                    <path d="M10 80 L50 0 L90 80 L50 70 Z" fill="#2196F3"/>
+                    <rect x="35" y="30" width="30" height="20" fill="#fff"/>
+                </svg>
+                <p>Heavy Cruiser</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="gameOver">
+        <h1>Mission Complete!</h1>
+        <p>Your final score: <span id="finalScore">0</span></p>
+        <button onclick="location.reload()">Play Again</button>
+    </div>
+
+    <div id="levelSelect">
+        <h1>Select Level</h1>
+        <div id="levelButtons">
+            <button class="level-button unlocked" data-level="1">Level 1</button>
+            <button class="level-button" data-level="2">Level 2</button>
+            <button class="level-button" data-level="3">Level 3</button>
+            <button class="level-button boss-level" data-level="4">Boss Level</button>
+        </div>
+        <div id="progressControls">
+            <button onclick="resetProgress()">Reset Progress</button>
+        </div>
+    </div>
+
+    <script src="js/space_adventure.js"></script>
+    <script>
+        // Add the JavaScript code for the mobile menu toggle here
+        document.querySelector('.menu-btn').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

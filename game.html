@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Quiz Game</title>
+    <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <span class="logo-text">Exoplanet Explorer</span>
+        </a>
+        <button class="menu-btn">☰</button>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="planet-exoploring.html" class="nav-link">Planet Exploring</a>
+            <a href="space_games/game_choose.html" class="nav-link ">Play Game</a>
+            <a href="mh-gpt.html" class="nav-link">MH-GPT</a>
+            <a href="about.html" class="nav-link">About Us</a>
+        </div>
+    </nav> 
+
+    <div class="stars" id="stars"></div>
+  
+    <div class="game-container">
+      <div class="header">
+        <div class="score">Score: <span id="score">0</span></div>
+        <div class="timer">Time: <span id="timer">0:00</span></div>
+      </div>
+  
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+      </div>
+  
+      <div class="question-container">
+        <div class="question" id="question">Loading question...</div>
+        <div class="options-container" id="options">
+        </div>
+      </div>
+    </div>
+  
+    <svg class="floating-astronaut" viewBox="0 0 100 100">
+      <path d="M50 10C35 10 25 20 25 35C25 45 35 55 50 55C65 55 75 45 75 35C75 20 65 10 50 10Z" fill="#fff"/>
+      <circle cx="50" cy="30" r="15" fill="#004e92"/>
+      <path d="M30 40C25 50 25 70 50 90C75 70 75 50 70 40" fill="#fff"/>
+    </svg>
+  
+
+    <!-- Footer -->
+    <footer class="footer-container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Monofeya Heroes Team is dedicated to creating engaging educational experiences through interactive quizzes and games. Join us on our mission to make learning fun!</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="planet-exoploring.html">Planet Exploring</a></li>
+                    <li><a href="game_choose.html">Play Game</a></li>
+                    <li><a href="mh-gpt.html">MH-GPT</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:monofey_heroes@tuta.io">monofeya_heroes@tuta.io</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2024 Monofeya Heroes Team. All rights reserved. | Designed with 💙 in Egypt</p>
+        </div>
+    </footer>
+
+    <script src="js/game.js"></script>
+    <script>
+        // JavaScript to toggle menu visibility
+        document.querySelector('.menu-btn').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex'; // Toggle display
+        });
+    </script>
+</body>
+</html>

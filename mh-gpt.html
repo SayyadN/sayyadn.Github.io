@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MH-GPT</title>
+    <link rel="stylesheet" href="css/mh-gpt.css">
+    <link rel="icon" href="images/Web_Icons/MH-GPT.ico">
+    <script type="importmap">
+        {
+            "imports": {
+                "@google/generative-ai": "https://esm.run/@google/generative-ai"
+            }
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <span class="logo-text">Exoplanet Explorer</span>
+        </a>
+        <button class="menu-btn">☰</button>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="planet-exoploring.html" class="nav-link">Planet Exploring</a>
+            <a href="game_choose.html" class="nav-link">Play Game</a>
+            <a href="mh-gpt.html" class="nav-link active">MH-GPT</a>
+            <a href="about.html" class="nav-link">About Us</a>
+        </div>
+    </nav>
+
+    <div class="chat-container">
+        <div class="welcome-message">
+            <h1>Welcome to Monofeya Heroes GPT</h1>
+            <p>Experience the next generation of AI assistance. Powered by advanced machine learning, I'm here to help you with any task, from simple questions to complex problem-solving.</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Get instant responses powered by state-of-the-art AI technology.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Highly Accurate</h3>
+                    <p>Precise and reliable answers backed by extensive knowledge.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure & Private</h3>
+                    <p>Your conversations are always private and protected.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-window">
+            <div class="message bot-message">
+                <div class="avatar bot-avatar">AI</div>
+                <div class="message-content">
+                    Hello! I'm your AI assistant from Monofeya Heroes. I'm here to help you with anything you need - whether it's coding, research, writing, or analysis. What can I help you with today?
+                </div>
+            </div>
+        </div>
+    
+        <div class="bot-typing">AI Assistant is typing...</div>
+    </div>
+    
+    <div class="input-container">
+        <div class="input-wrapper">
+            <textarea class="chat-input" placeholder="Type your message here..." rows="1"></textarea>
+            <button class="send-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    
+    <script type="module">
+        import { GoogleGenerativeAI } from "@google/generative-ai";
+        
+        const API_KEY = "AIzaSyBQuO_k2vzDIh0C0da0ccSPVCOpnARUUQw";
+        const genAI = new GoogleGenerativeAI(API_KEY);
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    
+        const chatInput = document.querySelector('.chat-input');
+        const sendButton = document.querySelector('.send-btn');
+        const chatWindow = document.querySelector('.chat-window');
+        const botTyping = document.querySelector('.bot-typing');
+    
+        // Auto-resize textarea
+        chatInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 200) + 'px';
+        });
+    
+        async function sendMessage(message) {
+            // Add user message
+            const userMessageEl = document.createElement('div');
+            userMessageEl.className = 'message user-message';
+            userMessageEl.innerHTML = `
+                <div class="avatar user-avatar">Y</div>
+                <div class="message-content">${message}</div>
+            `;
+            chatWindow.appendChild(userMessageEl);
+    
+            // Clear input and scroll to bottom
+            chatInput.value = '';
+            chatInput.style.height = '64px';
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+    
+            // Show typing indicator
+            botTyping.classList.add('active');
+    
+            try {
+                // Call the generative AI model
+                const result = await model.generateContent(message);
+                
+                // Hide typing indicator
+                botTyping.classList.remove('active');
+    
+                // Add bot response
+                const botMessageEl = document.createElement('div');
+                botMessageEl.className = 'message bot-message';
+                botMessageEl.innerHTML = `
+                    <div class="avatar bot-avatar">AI</div>
+                    <div class="message-content">${result.response.text()}</div>
+                `;
+                chatWindow.appendChild(botMessageEl);
+    
+                // Scroll to bottom
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            } catch (error) {
+                console.error('Error:', error);
+                botTyping.classList.remove('active');
+            }
+        }
+    
+        // Send on button click
+        sendButton.addEventListener('click', () => {
+            const message = chatInput.value.trim();
+            if (message) {
+                sendMessage(message);
+            }
+        });
+    
+        // Send on Enter key
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const message = chatInput.value.trim();
+                if (message) {
+                    sendMessage(message);
+                }
+            }
+        });
+    
+        // Focus input on page load
+        window.addEventListener('load', () => {
+            chatInput.focus();
+        });
+    </script>
+    
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Results </title>
+  <link rel="stylesheet" href="css/results.css">
+  <link rel="icon" href="images/Web_Icons/SpaceQuizResults.ico">
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+<!-- Navbar -->
+<nav class="navbar">
+  <a href="index.html" class="logo">
+    <span class="logo-text">Exoplanet Explorer</span>
+  </a>
+  <button class="menu-btn">☰</button>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="planet-exoploring.html" class="nav-link">Planet Exploring</a>
+    <a href="game_choose.html" class="nav-link active">Play Game</a>
+    <a href="mh-gpt.html" class="nav-link">MH-GPT</a>
+    <a href="about.html" class="nav-link">About Us</a>
+  </div>
+</nav> 
+  <div class="results-container">
+    <svg class="trophy" viewBox="0 0 100 100">
+      <path d="M50 10 L70 10 L70 20 L80 20 Q90 20 90 30 L90 40 Q90 50 80 50 L70 50 Q60 80 50 90 Q40 80 30 50 L20 50 Q10 50 10 40 L10 30 Q10 20 20 20 L30 20 L30 10 Z"/>
+      <path d="M40 90 L60 90 L60 95 L40 95 Z" fill="#c0c0c0"/>
+      <path d="M35 95 L65 95 L65 100 L35 100 Z" fill="#c0c0c0"/>
+    </svg>
+
+    <h1>Quiz Complete!</h1>
+    <div id="achievement" class="achievement">
+      <div class="achievement-title">Space Explorer</div>
+      <div id="achievement-description"></div>
+    </div>
+
+    <div class="score-details">
+      <div class="detail-card">
+        <div class="detail-label">Final Score</div>
+        <div class="detail-value" id="final-score">0</div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-label">Time Taken</div>
+        <div class="detail-value" id="time-taken">0:00</div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-label">Difficulty</div>
+        <div class="detail-value" id="difficulty">-</div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <a href="space-quiz-challenge.html" class="button play-again">Play Again</a>
+      <button class="button share" onclick="shareResults()">Share Results</button>
+    </div>
+  </div>
+
+    <!-- Footer -->
+    <footer class="footer-container">
+      <div class="footer-content">
+          <div class="footer-section">
+              <h3>About Us</h3>
+              <p>Monofeya Heroes Team is dedicated to creating engaging educational experiences through interactive quizzes and games. Join us on our mission to make learning fun!</p>
+          </div>
+
+          <div class="footer-section">
+              <h3>Quick Links</h3>
+              <ul class="footer-links">
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="planet-exoploring.html">Planet Exploring</a></li>
+                  <li><a href="game_choose.html">Play Game</a></li>
+                  <li><a href="mh-gpt.html">MH-GPT</a></li>
+                  <li><a href="about.html">About Us</a></li>
+              </ul>
+          </div>
+
+          <div class="footer-section">
+              <h3>Contact Info</h3>
+              <ul class="footer-links">
+                  <li><a href="mailto:monofey_heroes@tuta.io">monofeya_heroes@tuta.io</a></li>
+              </ul>
+          </div>
+      </div>
+
+      <div class="footer-bottom">
+          <p>© 2024 Monofeya Heroes Team. All rights reserved. | Designed with 💙 in Egypt</p>
+      </div>
+  </footer>
+
+  <script src="js/results.js"></script>
+  <script>
+      // JavaScript to toggle menu visibility
+      document.querySelector('.menu-btn').addEventListener('click', function() {
+          const navLinks = document.querySelector('.nav-links');
+          navLinks.classList.toggle('active');
+          navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex'; // Toggle display
+      });
+  </script>
+
+</body></html>
